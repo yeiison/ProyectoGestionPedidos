@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* CSS Document */
+
+header{
+
+	width: 70%;
+	margin:50px auto;
+
+	background: #10D194;
+
+}
+
+h1{
+
+	background: #081F27;
+	width:90%;
+	margin:50px auto;
+	padding:15px;
+
+
+	font-family: Roboto;
+	font-weight: 900;
+	font-size: 72px;
+	text-align:center;
+	color: #FFFBFB;
+}
+
+article {
+	background: #081F27;
+	border-radius: 50px;
+	margin-left: 50px
+	
+}
+
+
+label {
+	font-family: PT Mono;
+	background: #000000;
+	width:210px;
+	height: 60px;
+	font-size: 30px;
+	color: #FFFBFB;
+	margin-top: 20px;
+	margin-left: 30px;
+	text-align:center;
+
+}
+
+input{
+	width:500px;
+	height: 60px;
+}
+
+
+
+#button {
+	
+	width: 269px;
+	height: 88px;
+	font-size: 30px;
+	background: #000000;
+	margin-top: 20px	
+
+}
+
