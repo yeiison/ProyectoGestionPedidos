@@ -1,4 +1,4 @@
-
+1
 package co.edu.uan.sofeng.sample.samplespringweb.repositorio;
 
 // @author yeisonfernando
@@ -10,7 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ClienteRepositorio extends CrudRepository <Cliente, Long> {
     
-    List<Cliente> findBynomCliente (String nomCliente);
+    List<Cliente> findBynomCliente (String nomCliente); //agregar consultas especificas
     List<Cliente> findByciudadCliente (String ciudadCliente);
 
 }

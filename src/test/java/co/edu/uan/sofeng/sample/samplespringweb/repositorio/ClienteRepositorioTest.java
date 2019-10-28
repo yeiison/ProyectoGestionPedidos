@@ -39,8 +39,10 @@ public class ClienteRepositorioTest {
         carlos.setIdentificacion(1073166695);
         carlos.setDirCliente("Cra 1a #26-32");
         carlos.setCiudadCliente("Madrid");
-        //carlos.addPedido("21/10/2019", (float) 200); PREGUNTAR
-
+        carlos.addPedido("21/10/2019", (float) 200); 
+        
+        System.out.println("******" + carlos);
+        
         carlos = clienteRepositorio.save(carlos);
         assertThat(carlos.getIdCliente(), is(notNullValue()));
         assertThat(carlos.getIdentificacion(), is(1073166695));

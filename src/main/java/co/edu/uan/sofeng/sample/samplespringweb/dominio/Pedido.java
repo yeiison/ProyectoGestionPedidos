@@ -43,7 +43,7 @@ public class Pedido {
     
     @Override
     public String toString (){
-        return String.format("Pedido (idPedido: %d, cliente: %s , fecha: %s, cantidad: %d, productos: %s",
+        return String.format("Pedido (idPedido: %d, cliente: %s , fecha: %s, cantidad: %f, productos: %s",
                 idPedido, cliente.getIdCliente() ,fecha, cantidad, productos);
     }
     

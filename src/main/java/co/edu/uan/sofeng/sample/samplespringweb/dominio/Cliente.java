@@ -110,11 +110,11 @@ public class Cliente {
     }
     
     
-    /*
+    
     public void addPedido(String fecha, float cantidad) {
         Pedido p = new Pedido(this, fecha, cantidad);
         pedidos.add(p);
     }
-    */  //PREGUNTAR
+      //PREGUNTAR
     
 }
