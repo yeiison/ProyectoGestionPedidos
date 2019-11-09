@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Users</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+	<div class="container my-2">
+		<div class="card">
+			<div class="card-body">
+				<div th:swith="${clientes}" class="container my-5">
+					<p class="my-5">
+						<a href="/clientes/interact" class="btn btn-primary"> <i class="fas fa-user-plus ml-2">Gestion Clientes </i></a>
+						<a href="" class="btn btn-primary"> <i class="fas fa-receipt ml-2">Pedidos </i></a>
+					</p>
+				</div>
+
+				<div class="container my-5">
+					<p class="my-5">
+						<a href="" class="btn btn-primary"> <i class="fas fa-shopping-cart ml-2">Gestion Productos </i></a>
+						<a href="" class="btn btn-primary"> <i class="fas fa-truck-moving ml-2">Productos Pedidos</i></a>
+					</p>
+					</div>
+
+			</div>
+			
+		</div>
+		
+
+	</div>
+
+		    <div class="container my-2">
+	        <div class="card">
+	            <div class="card-body">
+	                <div th:switch="${clientes}" class="container my-5">
+	                    <div class="col-md-10">
+	                        <h2 th:case="null">No hay clientes registrados</h2>
+	                        <div th:case="*">
+	                            <table class="table table-striped table-responsive-md">
+	                                <thead>
+	                                    <tr>
+	                                    	<th>Identificacion</th>
+	                                        <th>Nombres</th>
+	                                        <th>Apellidos</th>
+	                                        <th>Direccion</th>
+	                                        <th>Ciudad</th>
+	                                        <th>Editar</th>
+	                                        <th>Borrar</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                    <tr th:each="cliente : ${clientes}">
+	                                    	<td th:text="${cliente.identificacion}"></td>
+	                                        <td th:text="${cliente.nomCliente}"></td>
+	                                        <td th:text="${cliente.apeCliente}"></td>
+	                                        <td th:text="${cliente.dirCliente}"></td>
+	                                        <td th:text="${cliente.ciudadCliente}"></td>
+	                                        <td><a th:href="@{/clientes/edit/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+	                                        <td><a th:href="@{/clientes/delete/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+	                                    </tr>
+	                                </tbody>
+	                            </table>
+	                        </div>
+
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+
+
+
+</body>
+
+</html>

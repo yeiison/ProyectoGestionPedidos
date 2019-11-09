@@ -1,14 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package co.edu.uan.sofeng.sample.samplespringweb.repositorio;
+
+import co.edu.uan.sofeng.sample.samplespringweb.dominio.Pedido;
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
  * @author yeisonfernando
  */
-public interface PedidoRepositorio {
+public interface PedidoRepositorio extends CrudRepository <Pedido, Long> {
+    List<Pedido> findByfecha (String fecha);
     
 }

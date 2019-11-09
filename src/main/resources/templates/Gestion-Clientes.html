@@ -2,93 +2,98 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-	<meta charset="utf-8">
-	<title>Gestion Clientes</title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
-	<link rel="stylesheet" type="text/css" href="EstilosGestionPedidos.css">
-
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Gestion Clientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
 </head>
 
-<body style="background: #193D4D;">
 
-	<header>
-		<div class="container">
-			<h1>Gestión Clientes</h1>
-		</div>
-	</header>
+<body>
+    <div class="container my-5">
+        <h3>Gestion Clientes</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/clientes/add}" th:object="${cliente}" method="post">
+                        <div class="row">
 
-	<div class="container-fluid">
-		<section class="main row">
+                        	<div class="form-group col-md-8">
+                                <label for="identificacion" class="col-form-label">Identificacion</label> <input type="text" th:field="*{identificacion}" class="form-control" id="identificacion" placeholder="Identificacion"> <span th:if="${#fields.hasErrors('identificacion')}" th:errors="*{identificacion}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="nomCliente" class="col-form-label">Nombres</label> <input type="text" th:field="*{nomCliente}" class="form-control" id="nomCliente" placeholder="Nombres"> <span th:if="${#fields.hasErrors('nomCliente')}" th:errors="*{nomCliente}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="apeCliente" class="col-form-label">Apellidos</label> <input type="text" th:field="*{apeCliente}" class="form-control" id="apeCliente" placeholder="Apellidos"> <span th:if="${#fields.hasErrors('apeCliente')}" th:errors="*{apeCliente}" class="text-danger"></span>
+                            </div>
 
-			<article class="col-xs-8 col-sm-8 col-md-8">
+                            <div class="form-group col-md-8">
+                                <label for="dirCliente" class="col-form-label">Direccion</label> <input type="text" th:field="*{dirCliente}" class="form-control" id="dirCliente" placeholder="Direccion"> <span th:if="${#fields.hasErrors('dirCliente')}" th:errors="*{dirCliente}" class="text-danger"></span>
+                            </div>
 
-				<div>
-					<label for="identificacion" >Identificación</label>
-				 	<input placeholder="identificacion">
-				</div>
-				
-				<div>
-					<label for="firstName" >Nombres</label>
-					<input placeholder="Nombres">
-				</div>
+                            <div class="form-group col-md-8">
+                                <label for="ciudadCliente" class="col-form-label">Ciudad</label> <input type="text" th:field="*{ciudadCliente}" class="form-control" id="ciudadCliente" placeholder="Ciudad"> <span th:if="${#fields.hasErrors('ciudadCliente')}" th:errors="*{ciudadCliente}" class="text-danger"></span>
+                            </div>
 
-				<div>
-					<label for="firstName" >Apelllidos</label>
-					<input placeholder="Apelllidos">
-				</div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Agregar">
+                            </div>
 
-				<div>
-					<label for="firstName" >Direccion</label>
-					<input placeholder="Direccion">
-				</div>
+                            <div class="form-group col-md-8"></div>
 
-				<div>
-					<label for="firstName" >Ciudad</label>
-					<input placeholder="Ciudad">
-				</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${clientes}" class="container my-5">
+                    <div class="col-md-10">
+                        <h2 th:case="null">No hay clientes registrados</h2>
+                        <div th:case="*">
+                           <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th>Identificacion</th>
+                                        <th>Nombres</th>
+                                        <th>Apellidos</th>
+                                        <th>Direccion</th>
+                                        <th>Ciudad</th>
+                                        <th>Editar</th>
+                                        <th>Borrar</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="cliente : ${clientes}">
+                                        <td th:text="${cliente.identificacion}"></td>
+                                        <td th:text="${cliente.nomCliente}"></td>
+                                        <td th:text="${cliente.apeCliente}"></td>
+                                        <td th:text="${cliente.dirCliente}"></td>
+                                        <td th:text="${cliente.ciudadCliente}"></td>
+                                        <td><a th:href="@{/clientes/edit/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/clientes/delete/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
 
-			</article>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-			
-	        <aside>
+		    
 
-	        	<div class="col-xs-4 col-sm-4 col-md-4">
-	        		<input id="button" type="submit" class="btn btn-primary" value="Ingresar">
-	        	</div>
-
-	        	<div class="col-xs-4 col-sm-4 col-md-4">
-	        		<input id="button" type="submit" class="btn btn-primary" value="Eliminar">
-	        	</div>
-
-	        	<div class="col-xs-4 col-sm-4 col-md-4">
-	        		<input id="button" type="submit" class="btn btn-primary" value="Actualizar">
-	        	</div>
-
-
-
-	        </aside>
-
-		</section>
-
-
-
-		
-
-
-	</div>
-
-
-	
-
-
-
-
-
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
 </body>
+
 </html>
