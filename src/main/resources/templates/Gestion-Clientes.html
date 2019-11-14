@@ -78,8 +78,11 @@
                                         <td th:text="${cliente.apeCliente}"></td>
                                         <td th:text="${cliente.dirCliente}"></td>
                                         <td th:text="${cliente.ciudadCliente}"></td>
-                                        <td><a th:href="@{/clientes/edit/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
-                                        <td><a th:href="@{/clientes/delete/{id}(id=${cliente.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    
+                                        <td> <!--<a th:href="@{/clientes/edit/{id}(id=${cliente.id})}" class="btn btn-primary"> --> <i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><!--<a th:href="@{/clientes/delete/{id}(id=${cliente.Id})}" class="btn btn-primary">--><i class="fas fa-user-times ml-2"></i></a></td>
+                                    
+                                    
                                     </tr>
                                 </tbody>
                             </table>

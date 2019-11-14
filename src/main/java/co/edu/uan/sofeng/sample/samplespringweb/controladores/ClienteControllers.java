@@ -44,7 +44,7 @@ public class ClienteControllers {
     @GetMapping("lista")
     public String showUpdateForm(Model model){
         model.addAttribute("clientes", clienteRepositorio.findAll());
-        return "Gestion-Clientes";
+        return "HomePage";
     }
     
         @PostMapping("add")
@@ -53,8 +53,12 @@ public class ClienteControllers {
             return "Gestion-Clientes";
         }
 
-        clienteRepositorio.save(cliente);
-        return "redirect:lista";
+        //clienteRepositorio.save(cliente);
+        model.addAttribute("cliente", clienteRepositorio.save(cliente));
+        model.addAttribute("clientes", clienteRepositorio.findAll());
+    
+        System.out.println("cliente guardado");
+        return "Gestion-Clientes";
     }
 
 }
