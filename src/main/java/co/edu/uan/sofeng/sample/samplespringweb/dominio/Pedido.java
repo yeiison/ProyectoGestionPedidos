@@ -23,7 +23,8 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
     private String fecha;
-    private float cantidad; //PREGUNTAR SI EL TIPO DE VARIABLE ESTA BIEN
+    private Long cantidad; //PREGUNTAR SI EL TIPO DE VARIABLE ESTA BIEN
+    private Float valorProducto;
     
     @ManyToOne(optional=false) //relacion muchos a uno
     @JoinColumn(name="Cliente_id", nullable=false) 
@@ -35,16 +36,18 @@ public class Pedido {
     protected Pedido (){
     }
 
-    public Pedido(Cliente cliente, String fecha, float cantidad) {
+    public Pedido(Cliente cliente, String fecha, Long cantidad, Float valorProducto) {
         this.cliente = cliente;
         this.fecha = fecha;
         this.cantidad = cantidad;
+        this.valorProducto = valorProducto;
+        
     }
     
     @Override
     public String toString (){
-        return String.format("Pedido (idPedido: %d, cliente: %s , fecha: %s, cantidad: %f, productos: %s",
-                idPedido, cliente.getIdCliente() ,fecha, cantidad, productos);
+        return String.format("Pedido (idPedido: %d, cliente: %s , fecha: %s, cantidad: %d,valorProducto: %d, productos: %s",
+                idPedido, cliente.getIdCliente() ,fecha, cantidad, valorProducto, productos);
     }
     
     
@@ -64,14 +67,22 @@ public class Pedido {
         this.fecha = fecha;
     }
 
-    public float getCantidad() {
+    public Long getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(float cantidad) {
+    public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
 
+    public Float getValorProducto() {
+        return valorProducto;
+    }
+
+    public void setValorProducto(Float valorProducto) {
+        this.valorProducto = valorProducto;
+    }
+    
     public Cliente getCliente() {
         return cliente;
     }

@@ -27,14 +27,8 @@ public class ClienteControllers {
     @Autowired
     public ClienteControllers(ClienteRepositorio clienteRepositorio) {
         this.clienteRepositorio = clienteRepositorio;
-    }
-    
-    @GetMapping("/HomePage")
-    public String HomePage (){
-        return "HomePage";
-    } 
-    
-    
+    }   
+   
     @GetMapping("/interact")
     public String showSignUpForm(Cliente cliente) {
         return "Gestion-Clientes";

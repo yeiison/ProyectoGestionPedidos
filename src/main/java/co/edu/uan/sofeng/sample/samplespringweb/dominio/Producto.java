@@ -23,13 +23,13 @@ public class Producto {
     private Float precio;
     
     @ManyToOne(optional=false) //relacion muchos a uno
-    @JoinColumn(name="Pedido_id", nullable=false)
+    //@JoinColumn(name="pedido_id", nullable=false)
     private Pedido pedido;
     
     protected Producto(){
         
     }
-    
+    /* PREGUNTAR POR QUE NO ME DEJA INGRESAR DATOS
     private Producto (Pedido pedido, String distribuidora, String nomProducto, Long cantidad, Float Precio){
         this.pedido = pedido;
         this.distribuidora = distribuidora;
@@ -37,12 +37,29 @@ public class Producto {
         this.cantidad = cantidad;
         this.precio = precio;
     }
+*/
+    public Producto(Long idProducto, String distribuidora, String nomProducto, Long cantidad, Float precio) {
+        this.idProducto = idProducto;
+        this.distribuidora = distribuidora;
+        this.nomProducto = nomProducto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+    
+    /*
+    @Override
+    public String toString (){
+        return String.format("Producto(idProducto: %d, pedido: %s, distribuidora: %s, nomProducto: %s, cantida: %d, precio: %d",
+                idProducto, pedido.getIdPedido(), distribuidora, nomProducto, cantidad, precio );
+    }   
+    */
     
     @Override
     public String toString (){
-        return String.format("Producto(idProducto: %d, pedido: %s, distribuidora: %s, nomProducto: %s, cantida: %d, precio: %s",
-                idProducto, pedido.getIdPedido(), distribuidora, nomProducto, cantidad, precio );
-    }    
+        return String.format("Producto(idProducto: %d, distribuidora: %s, nomProducto: %s, cantida: %d, precio: %d",
+                idProducto, distribuidora, nomProducto, cantidad, precio );
+    } 
+    
 
     public Long getIdProducto() {
         return idProducto;
@@ -80,7 +97,7 @@ public class Producto {
         return precio;
     }
 
-    public void setPrecio(float precio) {
+    public void setPrecio(Float precio) {
         this.precio = precio;
     }
     

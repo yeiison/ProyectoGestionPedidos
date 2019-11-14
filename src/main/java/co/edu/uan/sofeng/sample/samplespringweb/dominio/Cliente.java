@@ -111,8 +111,8 @@ public class Cliente {
     
     
     
-    public void addPedido(String fecha, float cantidad) {
-        Pedido p = new Pedido(this, fecha, cantidad);
+    public void addPedido(String fecha, Long cantidad, Float valorPedido) {
+        Pedido p = new Pedido(this, fecha, cantidad, valorPedido);
         pedidos.add(p);
     }
       //PREGUNTAR

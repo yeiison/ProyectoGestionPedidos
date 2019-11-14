@@ -39,7 +39,7 @@ public class ClienteRepositorioTest {
         carlos.setIdentificacion(1073166695);
         carlos.setDirCliente("Cra 1a #26-32");
         carlos.setCiudadCliente("Madrid");
-        carlos.addPedido("21/10/2019", (float) 200); 
+       // carlos.addPedido("21/10/2019", (Float) 200); 
         
         System.out.println("******" + carlos);
         
