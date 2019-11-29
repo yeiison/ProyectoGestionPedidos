@@ -3,11 +3,14 @@ package co.edu.uan.sofeng.sample.samplespringweb.dominio;
 
 //@author yeisonfernando
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 
@@ -22,22 +25,18 @@ public class Producto {
     private Long cantidad;
     private Float precio;
     
-    @ManyToOne(optional=false) //relacion muchos a uno
+   // @ManyToOne(optional=false) //relacion muchos a uno
     //@JoinColumn(name="pedido_id", nullable=false)
-    private Pedido pedido;
+    
+    @ManyToMany (mappedBy = "productos")
+    private List <Pedido> pedido = new ArrayList<Pedido>();
+    
+
     
     protected Producto(){
         
     }
-    /* PREGUNTAR POR QUE NO ME DEJA INGRESAR DATOS
-    private Producto (Pedido pedido, String distribuidora, String nomProducto, Long cantidad, Float Precio){
-        this.pedido = pedido;
-        this.distribuidora = distribuidora;
-        this.nomProducto = nomProducto;
-        this.cantidad = cantidad;
-        this.precio = precio;
-    }
-*/
+
     public Producto(Long idProducto, String distribuidora, String nomProducto, Long cantidad, Float precio) {
         this.idProducto = idProducto;
         this.distribuidora = distribuidora;

@@ -10,6 +10,8 @@ import org.springframework.data.repository.CrudRepository;
  * @author yeisonfernando
  */
 public interface ProductoRepositorio extends CrudRepository <Producto, Long>{
+    List<Producto> findBydistribuidora (String distribuidora);
+    List<Producto> findBynomProducto (String nomProducto);
     
     
 }

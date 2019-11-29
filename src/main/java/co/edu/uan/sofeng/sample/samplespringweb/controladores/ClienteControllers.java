@@ -30,7 +30,8 @@ public class ClienteControllers {
     }   
    
     @GetMapping("/interact")
-    public String showSignUpForm(Cliente cliente) {
+    public String showSignUpForm(Cliente cliente, Model model ) {
+        model.addAttribute("clientes", clienteRepositorio.findAll());
         return "Gestion-Clientes";
     }    
     
@@ -41,18 +42,23 @@ public class ClienteControllers {
         return "HomePage";
     }
     
-        @PostMapping("add")
+    @PostMapping("add")
     public String addStudent(@Valid Cliente cliente, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "Gestion-Clientes";
         }
 
-        //clienteRepositorio.save(cliente);
         model.addAttribute("cliente", clienteRepositorio.save(cliente));
         model.addAttribute("clientes", clienteRepositorio.findAll());
     
         System.out.println("cliente guardado");
         return "Gestion-Clientes";
     }
+    
+    @GetMapping("/index")
+    public String indexPage() {        
+        return "index";
+    } 
+    
 
 }

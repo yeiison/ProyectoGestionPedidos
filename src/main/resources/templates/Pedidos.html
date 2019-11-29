@@ -10,24 +10,44 @@
 
 <body>
     <div class="container my-5">
-        <h3>Pedidos</h3>
+        <header class="row">
+            <aside class="col-md-7">
+            <h3>Pedidos</h3>      
+            </aside>
+            <aside class="col-md-3">
+                <a href="/pedidos/index" class="btn btn-primary"> <i class="fas fa-home"></i></a>
+            </aside>
+        </header>
         <div class="card">
             <div class="card-body">
                 <div class="col-md-10">
                     <form action="#" th:action="@{/pedidos/add}" th:object="${pedido}" method="post">
                         <div class="row">
 
-                        	<!--<div class="form-group col-md-8">
-                                <label for="nomCliente" class="col-form-label">Nombre Cliente</label> <input type="text" th:field="*{nomCliente}" class="form-control" id="nomCliente" placeholder="Nombre Cliente"> <span th:if="${#fields.hasErrors('nomCliente')}" th:errors="*{nomCliente}" class="text-danger"></span>
-                            </div> -->
-
-                            <!--<div class="form-group col-md-8">
-                                <label for="nomProducto" class="col-form-label">Nombre producto</label> <input type="text" th:field="*{nomProducto}" class="form-control" id="nomProducto" placeholder="Nombre producto"> <span th:if="${#fields.hasErrors('nomProducto')}" th:errors="*{nomProducto}" class="text-danger"></span>
-                            </div> -->
+                        	<div class="form-group col-md-8">
+                                <label for="idCliente" class="col-form-label">Nombre Cliente</label>
+                                <select th:field= "${clientes}" class="form-control">
+                                    <option value="">Nombre Cliente</option>
+                                    <option th:each="cliente : ${clientes}" 
+                                            th:value="${cliente.idCliente}"
+                                            th:text="${cliente.nomCliente}" >
+                                </select> 
+                            </div> 
+ 
+                            <div class="form-group col-md-8">
+                                <label for="idProducto" class="col-form-label">Nombre producto</label>
+                                <select th:field= "${productos}" class="form-control">
+                                    <option value="">Nombre producto</option>
+                                    <option th:each="producto : ${productos}" 
+                                            th:value="${producto.idProducto}"
+                                            th:text="${producto.nomProducto}">
+                                </select>
+                            </div>
 
                             <div class="form-group col-md-8">
                                 <label for="fecha" class="col-form-label">Fecha</label> <input type="text" th:field="*{fecha}" class="form-control" id="fecha" placeholder="Fecha"> <span th:if="${#fields.hasErrors('fecha')}" th:errors="*{fecha}" class="text-danger"></span>
                             </div>
+
                             <div class="form-group col-md-8">
                                 <label for="cantidad" class="col-form-label">Cantidad</label> <input type="text" th:field="*{cantidad}" class="form-control" id="cantidad" placeholder="Cantidad"> <span th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}" class="text-danger"></span>
                             </div>

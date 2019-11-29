@@ -12,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -22,17 +24,24 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idPedido;
+    //private String nomCliente;
+    //private String nomProducto;
     private String fecha;
     private Long cantidad; //PREGUNTAR SI EL TIPO DE VARIABLE ESTA BIEN
     private Float valorProducto;
     
-    @ManyToOne(optional=false) //relacion muchos a uno
-    @JoinColumn(name="Cliente_id", nullable=false) 
+    @ManyToOne(optional=true) //relacion muchos a uno
+    @JoinColumn(name="Cliente_id", nullable=true) 
     private Cliente cliente;
     
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="pedido")
+    @ManyToMany
+    @JoinTable(
+    name = "productoPertenece",
+            joinColumns = @JoinColumn(name = "Pedido_id"),
+            inverseJoinColumns = @JoinColumn(name="Producto_id"))
     private List<Producto> productos = new ArrayList<Producto> ();
     
+   
     protected Pedido (){
     }
 
@@ -49,8 +58,7 @@ public class Pedido {
         return String.format("Pedido (idPedido: %d, cliente: %s , fecha: %s, cantidad: %d,valorProducto: %d, productos: %s",
                 idPedido, cliente.getIdCliente() ,fecha, cantidad, valorProducto, productos);
     }
-    
-    
+
     public Long getIdPedido() {
         return idPedido;
     }

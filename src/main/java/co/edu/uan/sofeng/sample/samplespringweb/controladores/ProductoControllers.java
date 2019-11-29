@@ -29,7 +29,8 @@ public class ProductoControllers {
     }
     
     @GetMapping("/interact")
-    public String showSingUpForm(Producto producto) {
+    public String showSingUpForm(Producto producto, Model model) {
+        model.addAttribute("productos", productoRepositorio.findAll());
         return "Gestion-Productos";
     }
     
@@ -39,12 +40,15 @@ public class ProductoControllers {
             return "Gestion-Productos";
         }
 
-        //clienteRepositorio.save(cliente);
         model.addAttribute("producto", productoRepositorio.save(producto));
         model.addAttribute("productos", productoRepositorio.findAll());
-    
-        System.out.println("producto guardado");
+   
         return "Gestion-Productos";
     }  
+    
+    @GetMapping("/index")
+    public String indexPage() {        
+        return "index";
+    } 
     
 }
